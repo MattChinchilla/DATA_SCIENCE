@@ -19,3 +19,18 @@ def datecheck(df):
     else:
         df.drop(df.tail(1).index, inplace=True)
         return(df)
+
+
+
+#Function to format download market data into prophet compatible format
+
+def dataClean(file):
+    #Convert download file to time series of date and close
+    file_ts = file[['Date','Close']]
+
+    #rename columns 'ds' = datestamp and Y = Y value for prophet
+    file_ts = file_ts.rename(columns={"Date": "ds", "Close": "y"})
+
+    #Drop Na values from file
+    df = file_ts.dropna(axis=0)
+    return(df)

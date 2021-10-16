@@ -1,3 +1,6 @@
+"""" This file contains functions used in of preprocess downloaded crypto close data """
+
+
 # function to remove last record if date is greater than sysdate
 
 from datetime import datetime

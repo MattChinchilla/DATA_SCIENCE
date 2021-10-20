@@ -1,3 +1,3 @@
 # DATA_SCIENCE
-NOTEBOOKS RELATED TO Data Science
+NOTEBOOKS RELATED TO Data Science for fun.
 

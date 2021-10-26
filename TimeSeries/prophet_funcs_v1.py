@@ -1,11 +1,17 @@
 """" This file contains functions used in of preprocess downloaded crypto close data """
 
 
-# function to remove last record if date is greater than sysdate
+#python packages
 
 from datetime import datetime
 import pandas as pd
+import yfinance as yf
+import pandas as pd
 
+
+'''Function:datecheck 
+this function is used to check to make sure that the last date is not tomorrows date. 
+Yahoo Finance may pull data from a timezone that is in the future for some crypto close data.'''
 def datecheck(df):
     #Get todays date and convert to datetime format ymd
     today = datetime.today()

@@ -5,6 +5,8 @@ from datetime import datetime
 import pandas as pd
 import yfinance as yf
 import pandas as pd
+from ipywidgets import interact,widgets
+import mplfinance as mpf
 
 
 '''

@@ -5,20 +5,18 @@ from datetime import datetime
 import pandas as pd
 import yfinance as yf
 import pandas as pd
-from ipywidgets import interact,widgets
-import mplfinance as mpf
 
 
 '''
-Function: FetchData
-This function takes the input vars and uses the yfinance package to download data from the yahoo finance website.
+Function: FetchData_dict
+This function takes the input vars and uses the yfinance package to download data from the yahoo finance website into a dictonary object.
 FetchData has one input variable vars which is actually two inputs tickerStrings and period packaged into vars.
 vars: tickerStrings,period
 tickerStrings - This is a list of tickers to fetch from yfinance ex: tickerStrings = ['AAPL', 'MSFT']
 period -  Valid periods: 1d,5d,1mo,3mo,6mo,1y,2y,5y,10y,ytd,max
 '''
 
-def FetchData(vars):
+def FetchData_dict(vars):
     tickerStrings,period = vars
     df_list = list()
     for ticker in tickerStrings:
@@ -26,13 +24,13 @@ def FetchData(vars):
         data['ticker'] = ticker  # add this column because the dataframe doesn't contain a column with the ticker
         df_list.append(data)
         df = pd.concat(df_list) # combine all dataframes into a single dataframe
-    return(df)
+        df_dict = {value: df[df['ticker'] == value].drop('ticker', axis=1) for value in df['ticker'].unique()}
+    return(df_dict)
 
 
 
 
-
-'''
+''''
 Function:datecheck 
 this function is used to check to make sure that the last date is not tomorrows date. 
 Yahoo Finance may pull data from a timezone that is in the future for some crypto close data.
